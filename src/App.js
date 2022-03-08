@@ -1,9 +1,9 @@
+import React, { useState } from 'react';
 
-
-function App() {
+export function App() {
   return (
-    <div className=" text-red-500">
-     hi
+    <div>
+      <h1>hi</h1>
     </div>
   );
 }

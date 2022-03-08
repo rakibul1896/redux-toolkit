@@ -1,17 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import './Index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import store from './store';
+
+// console.log(store.getState())
+// const unsubscribe = store.subscribe(() =>
+//   console.log('State after dispatch: ', store.getState())
+// )
+// store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
+// store.dispatch({ type: 'todos/todoToggled', payload: 0 })
+
+// store.dispatch({
+//   type: 'filters/colorFilterChanged',
+//   payload: { color: 'red', changeType: 'added' }
+// })
+// unsubscribe();
+
+// store.dispatch({ type: 'todos/todoAdded', payload: 'Try creating a store' })
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
