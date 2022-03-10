@@ -1,9 +1,10 @@
 import React from 'react';
+import Counter from './features/counter/Counter';
 
 export function App() {
   return (
-    <div>
-      <h1>hi</h1>
+    <div className='select-none'>
+      <Counter/>
     </div>
   );
 }
