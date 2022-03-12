@@ -1,8 +1,8 @@
+<strong>switch branch to see the different app </strong>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-<strong>switch branch to see the different app </strong>
 
 ## Available Scripts
 
