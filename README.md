@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<strong style='front-size: '30px'>switch branch to see the different app </strong>
+<strong>switch branch to see the different app </strong>
 
 ## Available Scripts
 
