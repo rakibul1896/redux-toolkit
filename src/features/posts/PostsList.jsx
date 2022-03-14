@@ -17,7 +17,7 @@ const PostsList = () => {
   return (
     <section className="flex flex-col items-center w-full py-10 text-center">
       <h2 className="text-3xl xl:text-4xl pb-4">Posts</h2>
-      <div className='h-1 bg-mbg w-9/12 md:w-7/12 mb-8'></div>
+      <div className="h-1 bg-mbg w-9/12 md:w-7/12 mb-8"></div>
       {renderedPosts}
     </section>
   );

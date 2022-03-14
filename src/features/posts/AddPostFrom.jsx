@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addPost } from './postsSlice.js';
+import { nanoid } from '@reduxjs/toolkit';
+
+const initialValue = {
+  postTitle: '',
+  postContent: '',
+};
 
 const AddPostFrom = () => {
-  const initialValue = {
-    postTitle: '',
-    postContent: '',
-  };
   const [post, setPost] = useState(initialValue);
+  const [btnColor, setBtnColor] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,6 +20,29 @@ const AddPostFrom = () => {
       [name]: value,
     });
   };
+
+  const handleClick = () => {
+    if (post.postTitle && post.postContent) {
+      const data = {
+        id: nanoid(),
+        title: post.postTitle,
+        content: post.postContent,
+      };
+      dispatch(addPost(data));
+      setPost({
+        postTitle: '',
+        postContent: '',
+      });
+      setBtnColor(false)
+    }
+  };
+
+  useEffect(() => {
+    const { postTitle, postContent } = post;
+    if (postTitle && postContent) {
+      setBtnColor(true);
+    }
+  }, [setBtnColor, post]);
 
   return (
     <div className="w-11/12 md:w-10/12">
@@ -38,7 +67,12 @@ const AddPostFrom = () => {
         />
         <button
           type="button"
-          className="bg-mbg py-2 px-6 rounded text-slate-500 active:bg-btnActive active:text-white"
+          className={`bg-mbg py-2 px-6 my-3 rounded text-slate-500 active:bg-btnActive active:text-white ${
+            btnColor
+              ? 'outline outline-4 outline-btnActive outline-offset-2'
+              : 'outline-none'
+          }`}
+          onClick={handleClick}
         >
           Save Post
         </button>
