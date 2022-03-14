@@ -1,4 +1,4 @@
-<strong>switch branch to see the different app </strong>
+<h1><strong>switch branch to see the different app </strong></h1>
 
 # Getting Started with Create React App
 
