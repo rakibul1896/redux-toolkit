@@ -4,16 +4,20 @@
 
 @layer base {
   textarea::-webkit-scrollbar {
-    width: 0.8rem;
+    width: 0.6rem;
+    cursor: pointer;
   }
 
   textarea::-webkit-scrollbar-track {
-    -webkit-box-shadow: transparent;
+    background: #808180;
   }
 
   textarea::-webkit-scrollbar-thumb {
-    background-color: #D3DFE4;
+    background-color: #d3dfe4;
     border-radius: 1rem;
-    /* outline: 1px solid #D3DFE4; */
+  }
+
+  textarea::-webkit-scrollbar-thumb:hover {
+    background-color: #93b0bc;
   }
 }

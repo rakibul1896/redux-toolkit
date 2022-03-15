@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPost } from './postsSlice.js';
-import { nanoid } from '@reduxjs/toolkit';
 
 const initialValue = {
   postTitle: '',
@@ -19,21 +18,18 @@ const AddPostFrom = () => {
       ...post,
       [name]: value,
     });
+    if (!value) setBtnColor(false);
   };
 
   const handleClick = () => {
-    if (post.postTitle && post.postContent) {
-      const data = {
-        id: nanoid(),
-        title: post.postTitle,
-        content: post.postContent,
-      };
-      dispatch(addPost(data));
+    const { postTitle, postContent } = post;
+    if (postTitle && postContent) {
+      dispatch(addPost(postTitle, postContent));
       setPost({
         postTitle: '',
         postContent: '',
       });
-      setBtnColor(false)
+      setBtnColor(false);
     }
   };
 
@@ -46,14 +42,14 @@ const AddPostFrom = () => {
 
   return (
     <div className="w-11/12 md:w-10/12">
-      <h2 className="text-center text-2xl xl:text-4xl py-8">Add a New Post</h2>
-      <form className="flex flex-col shadow-xl p-5 rounded-md md:text-lg lg:text-xl">
+      <h2 className="text-center text-2xl xl:text-4xl py-6">Add a New Post</h2>
+      <form className="flex flex-col shadow-xl px-5 rounded-md md:text-lg lg:text-xl">
         <label htmlFor="postTitle">Post Title:</label>
         <input
           type="text"
           id="postTitle"
           name="postTitle"
-          className="mt-2 mb-3 border-2 focus:outline-mbg rounded h-12 px-2"
+          className="mt-2 mb-3 border-2 focus:outline-mbg rounded h-8 sm:h-12 px-2"
           value={post.postTitle}
           onChange={handleChange}
         />
@@ -61,7 +57,7 @@ const AddPostFrom = () => {
         <textarea
           id="postContent"
           name="postContent"
-          className="min-h-20 p-2 mt-2 mb-3 border-2 focus:outline-mbg rounded"
+          className="min-h-20 lg:min-h-28 p-2 mt-2 mb-3 border-2 focus:outline-mbg rounded"
           value={post.postContent}
           onChange={handleChange}
         />
