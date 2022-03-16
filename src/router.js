@@ -3,6 +3,7 @@ import App from './App';
 import AddPostFrom from './features/posts/AddPostFrom';
 import PostsList from './features/posts/PostsList';
 import SinglePostPage from './features/posts/SinglePostPage';
+import EditPostFrom from './features/posts/EditPostForm';
 
 const routes = [
   {
@@ -15,6 +16,12 @@ const routes = [
     elements: [SinglePostPage],
     childrenOf: App,
   },
+  {
+    path: 'editPost/:postId',
+    elements: [EditPostFrom],
+    childrenOf: App,
+  },
+  
 ];
 
 const handleRoute = ({ path, elements, childrenOf: App }, key) => {
