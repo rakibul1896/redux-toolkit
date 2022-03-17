@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { allPosts } from './postsSlice';
 
 const PostsList = () => {
-  const posts = useSelector((state) => state.posts);
-
+  const posts = useSelector(allPosts);
   const renderedPosts = posts.map((post) => (
     <article
       className="flex flex-col items-center w-11/12 md:w-10/12 shadow-lg p-5 rounded-md my-6 "
@@ -12,8 +12,10 @@ const PostsList = () => {
     >
       <h3 className="text-xl pb-3">{post.title}</h3>
       <p className="">
-        {post.content.substring(0, 100)}
-        <span className=' text-btnActive tracking-wider'>{post.content.length > 100 ? '.....' : ''}</span>
+        {post.body.substring(0, 100)}
+        <span className=" text-btnActive tracking-wider">
+          {post.body.length > 100 ? '.....' : ''}
+        </span>
       </p>
       <Link
         to={`posts/${post.id}`}

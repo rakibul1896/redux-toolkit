@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
+import BtnLink from './BtnLink.jsx';
 import { updatePost } from './postsSlice.js';
-import { BtnLink } from './SinglePostPage.jsx';
 
 const initialValue = {
   postTitle: '',
