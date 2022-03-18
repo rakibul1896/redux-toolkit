@@ -6,10 +6,8 @@ import { findPostById } from './postsSlice';
 
 const SinglePostPage = () => {
   const { postId } = useParams();
-  console.log('postId', postId);
-  const post = useSelector((state) => state.posts.entities.find(post=> post.id === postId));
-  console.log('post', post);
-  
+  const post = useSelector((state)=>findPostById(state, postId));
+
   if (!post) {
     return (
       <div className="flex flex-col items-center justify-center h-full">

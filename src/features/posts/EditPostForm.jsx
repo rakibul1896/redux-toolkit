@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import BtnLink from './BtnLink.jsx';
-import { updatePost } from './postsSlice.js';
+import { updateThePost } from './postsSlice.js';
 
 const initialValue = {
   postTitle: '',
@@ -12,7 +12,7 @@ const initialValue = {
 const EditPostFrom = () => {
   const [post, setPost] = useState(initialValue);
   const [btnColor, setBtnColor] = useState(false);
-  const postId = useParams().postId;
+  const { postId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,7 +28,12 @@ const EditPostFrom = () => {
   const handleClick = () => {
     const { postTitle, postContent } = post;
     if (postTitle && postContent) {
-      dispatch(updatePost(postId, postTitle, postContent));
+      const initialData = {
+        title: postTitle,
+        body: postContent,
+      };
+
+      dispatch(updateThePost({ initialData, postId }));
       navigate(`/posts/${postId}`);
       setPost({
         postTitle: '',

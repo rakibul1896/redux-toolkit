@@ -1,6 +1,7 @@
+import { nanoid } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addPost } from './postsSlice.js';
+import { addNewPost } from './postsSlice.js';
 
 const initialValue = {
   postTitle: '',
@@ -21,15 +22,24 @@ const AddPostFrom = () => {
     if (!value) setBtnColor(false);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const { postTitle, postContent } = post;
     if (postTitle && postContent) {
-      dispatch(addPost(postTitle, postContent));
-      setPost({
-        postTitle: '',
-        postContent: '',
-      });
-      setBtnColor(false);
+      const data = {
+        userId: nanoid(),
+        title: postTitle,
+        body: postContent,
+      };
+      try {
+        dispatch(addNewPost(data));
+        setPost({
+          postTitle: '',
+          postContent: '',
+        });
+        setBtnColor(false);
+      } catch (err) {
+        console.error('Failed to save the post: ', err);
+      }
     }
   };
 
